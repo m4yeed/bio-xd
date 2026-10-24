@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mayee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- background effects: grid along the screen edges -->
+    <div id="grid"></div>
+
+    <!-- "click to enter" screen (also unlocks the music) -->
+    <div id="gate"><span>click to enter</span></div>
+
+    <main class="stage">
+      <div class="float">
+        <section class="card">
+          <!-- editor title bar: one tab = one section -->
+          <div class="bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <button class="tab on" data-tab="about">about.md</button>
+            <button class="tab" data-tab="projects">projects.js</button>
+            <button class="tab" data-tab="stack">stack.sh</button>
+            <button class="tab" data-tab="playlist">playlist.m3u</button>
+            <button class="tab" data-tab="links">links.txt</button>
+          </div>
+
+          <!-- about.md -->
+          <section class="pane on" id="pane-about">
+            <div class="bio">
+              <div class="avatar">
+                <img src="avatar.png" alt="" onerror="this.remove()" />
+              </div>
+
+              <!-- prettier-ignore -->
+              <div class="code">
+<div class="ln"><span class="h">#</span> mayee</div>
+<div class="ln"></div>
+<div class="ln">I like customizing everything and digging in the terminal.</div>
+<div class="ln">I write for the web: the basic set, html, css and js.</div>
+<div class="ln">Linux and Windows both live on my machine.</div>
+<div class="ln"></div>
+<div class="ln"><span class="h">##</span> play</div>
+<div class="ln"><span class="p">-</span> Dead by Daylight</div>
+<div class="ln"><span class="p">-</span> Roblox: Michael's Zombies</div>
+<div class="ln"><span class="p">-</span> Roblox: Violence District</div>
+<div class="ln"></div>
+<div class="ln"><span class="h">##</span> listen</div>
+<div class="ln"><span class="p">-</span> upbeat stuff, see playlist.m3u</div>
+<div class="ln"></div>
+<div class="ln"><span class="com">// i use arch btw</span><i class="caret"></i></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- projects.js: screenshots go in shots/ (velum.jpg, piano.jpg) -->
+          <section class="pane" id="pane-projects">
+            <div class="cards">
+              <article class="proj rv">
+                <div class="shot">
+                  <span>&lt;/&gt;</span
+                  ><img
+                    data-try="shots/velum.jpg shots/velum.png shots/velum.jpeg shots/velum.webp velum.jpg velum.png"
+                    alt=""
+                  />
+                </div>
+                <div class="top">
+                  <h3>Velum</h3>
+                  <!-- change: released / beta / in progress -->
+                  <em class="st">released</em>
+                </div>
+                <p>
+                  New tab extension. Drag widgets anywhere, glass effect, resize
+                  them and change their width.
+                </p>
+                <div class="tags">
+                  <span>extension</span><span>js</span><span>css</span>
+                </div>
+                <div class="plinks">
+                  <a
+                    href="https://github.com/m4yeed/Velum"
+                    target="_blank"
+                    rel="noopener"
+                    >github ↗</a
+                  >
+                  <!-- add a store link here if it is published -->
+                </div>
+              </article>
+
+              <article class="proj rv">
+                <div class="shot">
+                  <span>&lt;/&gt;</span
+                  ><img
+                    data-try="shots/piano.jpg shots/piano.png shots/piano.jpeg shots/piano.webp piano.jpg piano.png"
+                    alt=""
+                  />
+                </div>
+                <div class="top">
+                  <h3>Piano AutoPlayer</h3>
+                  <em class="st wip">early dev</em>
+                </div>
+                <p>
+                  Desktop app that plays piano keys automatically. Song library,
+                  note editor and player.
+                </p>
+                <div class="tags">
+                  <span>app</span><span>c#</span><span>hotkeys</span>
+                </div>
+                <div class="plinks">
+                  <a
+                    href="https://github.com/m4yeed/autoplay-piano"
+                    target="_blank"
+                    rel="noopener"
+                    >github ↗</a
+                  >
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- stack.sh: interactive terminal, logic is in script.js -->
+          <section class="pane" id="pane-stack">
+            <div class="term" id="term">
+              <div class="rv"><b class="pr">$</b> whoami</div>
+              <div class="rv out">mayee</div>
+              <div class="rv out dim">
+                type <span class="hl">help</span> to see commands
+              </div>
+              <div id="tout"></div>
+              <label class="tin">
+                <b class="pr">$</b>
+                <input
+                  id="tin"
+                  type="text"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  aria-label="terminal input"
+                />
+              </label>
+            </div>
+          </section>
+
+          <!-- playlist.m3u: buttons are created in script.js from CFG.tracks -->
+          <section class="pane" id="pane-playlist">
+            <div id="tracks"></div>
+          </section>
+
+          <!-- links.txt: icons go in icons/ (telegram.svg, github.svg, tiktok.svg) -->
+          <section class="pane" id="pane-links">
+            <a
+              class="lnk rv"
+              href="https://t.me/labosax"
+              target="_blank"
+              rel="noopener"
+              ><img
+                class="ico"
+                src="icons/telegram.svg"
+                alt=""
+                onerror="this.remove()"
+              /><b>telegram</b><span>t.me/labosax</span><i>↗</i></a
+            >
+            <a
+              class="lnk rv"
+              href="https://github.com/m4yeed"
+              target="_blank"
+              rel="noopener"
+              ><img
+                class="ico"
+                src="icons/github.svg"
+                alt=""
+                onerror="this.remove()"
+              /><b>github</b><span>m4yeed</span><i>↗</i></a
+            >
+            <a
+              class="lnk rv"
+              href="https://www.tiktok.com/@m4yeedy"
+              target="_blank"
+              rel="noopener"
+              ><img
+                class="ico"
+                src="icons/tiktok.svg"
+                alt=""
+                onerror="this.remove()"
+              /><b>tiktok</b><span>m4yeedy</span><i>↗</i></a
+            >
+          </section>
+
+          <!-- falling code decoration (see script.js) -->
+          <div class="runway"><canvas id="codefall"></canvas></div>
+
+          <!-- music player -->
+          <div class="status">
+            <img id="cover" alt="" />
+            <button id="prev" aria-label="Previous">«</button>
+            <button id="pb" aria-label="Play or pause">❚❚</button>
+            <button id="next" aria-label="Next">»</button>
+            <div class="meta">
+              <b id="title"></b><small id="artist"></small>
+            </div>
+            <i class="eq"><s></s><s></s><s></s><s></s></i>
+            <input
+              id="vol"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.4"
+              aria-label="Volume"
+            />
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- the songs are listed in script.js, in CFG.tracks -->
+    <audio id="au" preload="auto"></audio>
+
+    <!-- fullscreen image viewer (opens when you click a project screenshot) -->
+    <div id="lb" aria-hidden="true">
+      <img alt="" />
+      <small id="lbcap"></small>
+    </div>
+
+    <!-- custom cursor -->
+    <div id="cur"><i></i></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
